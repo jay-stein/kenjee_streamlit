@@ -39,17 +39,17 @@ def audience_simple(country):
 
 #%%
 #load data sets
-df_agg = pd.read_csv(r"C:\Users\User\jupyter_notebooks\Projects\streamlit\data\Aggregated_Metrics_By_Video.csv")
+df_agg = pd.read_csv(r"Aggregated_Metrics_By_Video.csv")
 df_agg = df_agg.iloc[1:] #skip the first row
 
 #see if viewer is subscribed
-df_agg_sub = pd.read_csv(r"C:\Users\User\jupyter_notebooks\Projects\streamlit\data\Aggregated_Metrics_By_Country_And_Subscriber_Status.csv")
+df_agg_sub = pd.read_csv(r"Aggregated_Metrics_By_Country_And_Subscriber_Status.csv")
 # %%
 @st.cache_data
 
 def load_data():
     """ Loads in 4 dataframes and does light feature engineering"""
-    df_agg = pd.read_csv('../data/Aggregated_Metrics_By_Video.csv').iloc[1:,:]
+    df_agg = pd.read_csv('Aggregated_Metrics_By_Video.csv').iloc[1:,:]
     df_agg.columns = ['Video','Video title','Video publish time','Comments added','Shares','Dislikes','Likes',
                       'Subscribers lost','Subscribers gained','RPM(USD)','CPM(USD)','Average % viewed','Average view duration',
                       'Views','Watch time (hours)','Subscribers','Your estimated revenue (USD)','Impressions','Impressions ctr(%)']
@@ -60,9 +60,9 @@ def load_data():
     df_agg['Views / sub gained'] = df_agg['Views'] / df_agg['Subscribers gained']
     df_agg.sort_values('Video publish time', ascending = False, inplace = True)    
     
-    df_agg_sub = pd.read_csv('../data/Aggregated_Metrics_By_Country_And_Subscriber_Status.csv')
-    df_comments = pd.read_csv('../data/Aggregated_Metrics_By_Video.csv')
-    df_time = pd.read_csv('../data/Video_Performance_Over_Time.csv')
+    df_agg_sub = pd.read_csv('Aggregated_Metrics_By_Country_And_Subscriber_Status.csv')
+    df_comments = pd.read_csv('Aggregated_Metrics_By_Video.csv')
+    df_time = pd.read_csv('Video_Performance_Over_Time.csv')
     df_time['Date'] = df_time['Date'].replace('Sept','Sep', regex=True)
     df_time['Date'] = pd.to_datetime(df_time['Date'])
     return df_agg, df_agg_sub, df_comments, df_time 
