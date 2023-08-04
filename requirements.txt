@@ -49,7 +49,7 @@ Pympler==1.0.1
 python-dateutil==2.8.2
 pytz==2023.3
 pytz-deprecation-shim==0.1.0.post0
-pywin32==300
+### don't need this guy pywin32==300
 pyzmq==22.0.3
 referencing==0.30.0
 requests==2.26.0
